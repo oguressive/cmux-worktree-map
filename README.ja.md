@@ -4,15 +4,12 @@
 
 cmuxのタブでworktreeを使ったClaude Codeセッションをたくさん並行稼働させていると、どのタブで何をしていたか分からなくなります。このサイドバーは**各セッションがどのworktreeにいて、作業がどんな状態か**を一覧表示し、クリックでそのタブへ遷移します。
 
-```
-Tab 2
-  🌱 my-repo › fix-payment-bug   🟠 ⇡      ← worktree・未コミット・未push
-     ✳ 決済バリデーションのバグ修正           ← セッション名
-     fix-payment-bug                       ← チェックアウト中ブランチ
+<img src="docs/screenshot.png" width="360" alt="Worktree Mapサイドバー: worktreeセッションの未コミット/未pushマークとneeds inputバッジ">
 
-  my-repo                                  ← メインリポジトリのセッション
-     ✳ flaky testの調査
-     master
+```
+🌱 my-repo › fix-payment-bug   🟠 ⇡      ← worktree・未コミット・未push
+   ✳ Fix payment validation bug          ← セッション名
+   fix-payment-bug                       ← チェックアウト中ブランチ
 ```
 
 ## 特徴

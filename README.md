@@ -4,15 +4,12 @@ A live **worktree map sidebar** for [cmux](https://cmux.com) + [Claude Code](htt
 
 Running many Claude Code sessions across git worktrees in cmux tabs? This sidebar shows, at a glance, **which worktree every session is in and what state its work is in** — and jumps to the right tab on click.
 
-```
-Tab 2
-  🌱 my-repo › fix-payment-bug   🟠 ⇡      ← worktree, uncommitted, unpushed
-     ✳ Fix payment validation bug          ← session name
-     fix-payment-bug                       ← checked-out branch
+<img src="docs/screenshot.png" width="360" alt="Worktree Map sidebar showing a worktree session with uncommitted/unpushed marks and a needs-input badge">
 
-  my-repo                                  ← session on the main checkout
-     ✳ Investigating flaky tests
-     master
+```
+🌱 my-repo › fix-payment-bug   🟠 ⇡      ← worktree, uncommitted, unpushed
+   ✳ Fix payment validation bug          ← session name
+   fix-payment-bug                       ← checked-out branch
 ```
 
 ## Features
