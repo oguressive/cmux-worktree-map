@@ -7,10 +7,18 @@ Running many Claude Code sessions across git worktrees in cmux tabs? This sideba
 <img src="docs/screenshot.png" width="360" alt="Worktree Map sidebar showing a worktree session with uncommitted/unpushed marks and a needs-input badge">
 
 ```
-🌱 my-repo › fix-payment-bug   🟠 ⇡      ← worktree, uncommitted, unpushed
-   ✳ Fix payment validation bug          ← session name
-   fix-payment-bug                       ← checked-out branch
+Tab 1
+  🌱 my-repo › fix-payment-bug  🟠 ⇡   ← repository › worktree, uncommitted, unpushed
+     ✳ Fix payment validation bug      ← session name
+     fix-payment-bug                   ← checked-out branch
+
+Tab 2  🔴 needs input                  ← Claude is blocked waiting for your action
+     my-repo                           ← session on the main checkout (no 🌱)
+     ✳ Investigating flaky tests
+     master
 ```
+
+Marks always reflect the session's *current* directory: inside a worktree (🌱) they show **that worktree's** uncommitted/unpushed state; on the main checkout they show the main checkout's.
 
 ## Features
 

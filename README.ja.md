@@ -1,16 +1,24 @@
 # cmux-worktree-map
 
-[cmux](https://cmux.com) + [Claude Code](https://claude.com/claude-code) のための、ライブな**worktreeマップサイドバー**。
+[cmux](https://cmux.com) 上で動く各 [Claude Code](https://claude.com/claude-code) セッションが「**どのworktreeで・どんな状態か**」をリアルタイムに一覧表示するサイドバーです。
 
-cmuxのタブでworktreeを使ったClaude Codeセッションをたくさん並行稼働させていると、どのタブで何をしていたか分からなくなります。このサイドバーは**各セッションがどのworktreeにいて、作業がどんな状態か**を一覧表示し、クリックでそのタブへ遷移します。
+worktreeでの並行開発でタブが増えてくると、「どのタブで何をしていたか」が分からなくなりがちです。このサイドバーがあれば**全セッションの居場所とgit状態**を一目で把握でき、クリックでそのタブへ直接遷移できます。
 
 <img src="docs/screenshot.png" width="360" alt="Worktree Mapサイドバー: worktreeセッションの未コミット/未pushマークとneeds inputバッジ">
 
 ```
-🌱 my-repo › fix-payment-bug   🟠 ⇡      ← worktree・未コミット・未push
-   ✳ Fix payment validation bug          ← セッション名
-   fix-payment-bug                       ← チェックアウト中ブランチ
+Tab 1
+  🌱 my-repo › fix-payment-bug  🟠 ⇡   ← リポジトリ › worktree・未コミット・未push
+     ✳ Fix payment validation bug      ← セッション名
+     fix-payment-bug                   ← チェックアウト中ブランチ
+
+Tab 2  🔴 needs input                  ← Claudeがあなたのアクション待ちでブロック中
+     my-repo                           ← メインリポジトリのセッション（🌱なし）
+     ✳ Investigating flaky tests
+     master
 ```
+
+マークは常に**そのセッションが今いるディレクトリ**の状態を表します。worktree（🌱）にいる行は**そのworktree自身**の未コミット/未push状態、メインリポジトリにいる行はメインリポジトリの状態です。
 
 ## 特徴
 
