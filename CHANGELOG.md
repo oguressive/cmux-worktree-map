@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- CI: ShellCheck and Gitleaks run on every push / pull request
+- Security section in README (dependency-free, no network access, explicit write targets)
+
 ## [0.1.0] - 2026-07-11
 
 ### Added

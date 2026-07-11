@@ -23,5 +23,6 @@ for _ in 1 2 3 4 5 6; do
 done
 [ -n "$tty" ] || exit 0
 
+# shellcheck disable=SC1003  # '\033\\' はOSCシーケンスの終端(ESC+バックスラッシュ=ST)で意図通り
 printf '\033]7;file://%s%s\033\\' "$(hostname)" "$cwd" > "/dev/$tty" 2>/dev/null
 exit 0

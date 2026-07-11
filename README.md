@@ -1,5 +1,7 @@
 # cmux-worktree-map
 
+[![CI](https://github.com/oguressive/cmux-worktree-map/actions/workflows/ci.yml/badge.svg)](https://github.com/oguressive/cmux-worktree-map/actions/workflows/ci.yml)
+
 A live **worktree map sidebar** for [cmux](https://cmux.com) + [Claude Code](https://claude.com/claude-code).
 
 Running many Claude Code sessions across git worktrees in cmux tabs? This sidebar shows, at a glance, **which worktree every session is in and what state its work is in** — and jumps to the right tab on click.
@@ -77,6 +79,16 @@ The installer merges hook registrations into `~/.claude/settings.json` non-destr
 ## Freshness model
 
 Marks update when any session fires an event (prompt submitted, file edited, `git` command run, turn ended, session started). Edits made outside Claude Code (e.g. in your editor) are picked up on the next event from any session. There is no background polling.
+
+## Security
+
+This project is designed to be easy to audit:
+
+- **Zero dependencies** — plain Bash + Python 3 standard library only. No packages are downloaded or installed.
+- **No network access** — the hooks and sidebar never make network requests. All state (worktree paths, git status) stays on your machine, published only into cmux's local workspace fields.
+- **Small, readable surface** — 5 shell scripts and 1 sidebar file; everything that touches your system is in plain text.
+- **Explicit writes only** — files written: `~/.config/cmux/sidebars/worktrees.swift`, `~/.claude/hooks/cmux-*.sh`, `~/.claude/settings.json` (merged non-destructively, timestamped backup created first), and two small state files under `~/.claude/`.
+- **Continuously verified** — every push runs [ShellCheck](https://www.shellcheck.net/) (static analysis, zero findings) and [Gitleaks](https://github.com/gitleaks/gitleaks) (secret scan, full history) in [CI](https://github.com/oguressive/cmux-worktree-map/actions/workflows/ci.yml).
 
 ## Uninstall
 

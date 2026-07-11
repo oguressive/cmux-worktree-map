@@ -1,5 +1,7 @@
 # cmux-worktree-map
 
+[![CI](https://github.com/oguressive/cmux-worktree-map/actions/workflows/ci.yml/badge.svg)](https://github.com/oguressive/cmux-worktree-map/actions/workflows/ci.yml)
+
 [cmux](https://cmux.com) 上で動く各 [Claude Code](https://claude.com/claude-code) セッションが「**どのworktreeで・どんな状態か**」をリアルタイムに一覧表示するサイドバーです。
 
 worktreeでの並行開発でタブが増えてくると、「どのタブで何をしていたか」が分からなくなりがちです。このサイドバーがあれば**全セッションの居場所とgit状態**を一目で把握でき、クリックでそのタブへ直接遷移できます。
@@ -77,6 +79,16 @@ cd cmux-worktree-map
 ## 更新タイミング
 
 マークは、どこかのセッションがイベント（プロンプト送信・ファイル編集・`git`実行・ターン終了・セッション開始）を起こすたびに更新されます。エディタ等Claude外での変更は、次にどこかのセッションが動いた時に反映されます。バックグラウンドのポーリングはありません。
+
+## セキュリティ
+
+監査しやすさを重視した作りにしています:
+
+- **依存ゼロ** — 素のBashとPython 3標準ライブラリのみで動作し、パッケージのダウンロードやインストールは一切行いません
+- **ネットワークアクセスなし** — hookもサイドバーも通信を行いません。状態（worktreeパス・git状態）はあなたのマシン内に留まり、cmuxのローカルなworkspaceフィールドにのみ書き込まれます
+- **小さく読める実装** — シェルスクリプト5本とサイドバー1ファイルのみ。システムに触れる処理はすべて平文で確認できます
+- **書き込み先は明示的** — `~/.config/cmux/sidebars/worktrees.swift`、`~/.claude/hooks/cmux-*.sh`、`~/.claude/settings.json`（既存設定を壊さずマージ・タイムスタンプ付きバックアップを事前作成）、および`~/.claude/`配下の小さな状態ファイル2つだけです
+- **継続的に検証** — push毎に[ShellCheck](https://www.shellcheck.net/)（静的解析・指摘ゼロ）と[Gitleaks](https://github.com/gitleaks/gitleaks)（全履歴のシークレットスキャン）を[CI](https://github.com/oguressive/cmux-worktree-map/actions/workflows/ci.yml)で実行しています
 
 ## アンインストール
 
