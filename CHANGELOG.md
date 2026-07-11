@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - CI: ShellCheck and Gitleaks run on every push / pull request
 - Security section in README (dependency-free, no network access, explicit write targets)
+- CI actions pinned to full commit SHAs (supply-chain hardening)
+- Dependabot weekly updates for GitHub Actions with a 7-day cooldown
 
 ## [0.1.0] - 2026-07-11
 

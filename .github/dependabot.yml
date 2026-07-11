@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # CIで使うGitHub ActionsのSHA固定を最新に追従させる。
+  # cooldown: リリースから7日間はPRを出さない（出たての版を掴まないウォーム期間）
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
