@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+# 自動生成されるGITHUB_TOKENを読み取り専用に制限（最小権限）
+permissions:
+  contents: read
+
 jobs:
   shellcheck:
     name: ShellCheck
