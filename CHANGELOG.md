@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `install.sh` no longer runs `cmux sidebar validate` — the sidebar ships
+  pre-validated and cmux shows errors inline anyway, while cmux's control
+  socket rejects connections from outside cmux (making the check noisy for
+  the common Terminal install). The installer now only copies files and
+  merges settings, so it behaves identically from any terminal.
+
 ## [0.2.0] - 2026-07-12
 
 ### Added
