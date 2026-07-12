@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI actions pinned to full commit SHAs (supply-chain hardening)
 - Dependabot weekly updates for GitHub Actions with a 7-day cooldown
 
+### Fixed
+
+- cmux CLI resolution now prefers the env var injected by cmux, then the
+  app-bundled CLI, and falls back to `PATH` last — a stale standalone `cmux`
+  binary no longer breaks socket communication ("Broken pipe")
+- `install.sh` checks connectivity (`cmux ping`) before validating the sidebar
+  and prints a friendly skip note instead of a raw socket error
+
 ## [0.1.0] - 2026-07-11
 
 ### Added

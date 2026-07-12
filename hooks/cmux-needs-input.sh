@@ -18,9 +18,10 @@ STATE="$HOME/.claude/cmux-needs-input-state.json"
 input=$(cat)
 session=$(printf '%s' "$input" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("session_id",""))' 2>/dev/null)
 
+# CLI解決順: ①cmux注入の環境変数(起動中アプリと必ず一致) ②アプリ同梱CLI ③PATH(古い野良CLIの可能性があるため最後)
 cmux_bin="${CMUX_BUNDLED_CLI_PATH:-}"
-[ -z "$cmux_bin" ] && cmux_bin="$(command -v cmux 2>/dev/null)"
 [ -z "$cmux_bin" ] && [ -x /Applications/cmux.app/Contents/Resources/bin/cmux ] && cmux_bin=/Applications/cmux.app/Contents/Resources/bin/cmux
+[ -z "$cmux_bin" ] && cmux_bin="$(command -v cmux 2>/dev/null)"
 [ -z "$cmux_bin" ] && exit 0
 export CMUX_QUIET=1
 
