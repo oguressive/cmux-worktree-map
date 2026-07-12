@@ -89,20 +89,6 @@ with open(settings_path, 'w') as f:
 print(f'    {added} hook entries added (existing entries preserved)')
 PY
 
-# CLI resolution order: env var injected by cmux (always matches the running app)
-# -> app-bundled CLI -> PATH last (a stale standalone CLI may shadow the right one)
-CMUX_BIN="${CMUX_BUNDLED_CLI_PATH:-}"
-[ -z "$CMUX_BIN" ] && [ -x /Applications/cmux.app/Contents/Resources/bin/cmux ] && CMUX_BIN=/Applications/cmux.app/Contents/Resources/bin/cmux
-[ -z "$CMUX_BIN" ] && CMUX_BIN="$(command -v cmux 2>/dev/null || true)"
-
-echo "==> Validating sidebar"
-if [ -n "$CMUX_BIN" ] && "$CMUX_BIN" ping >/dev/null 2>&1; then
-  CMUX_QUIET=1 "$CMUX_BIN" sidebar validate worktrees || true
-else
-  echo "    note: cmux is not reachable — skipped validation."
-  echo "    Run 'cmux sidebar validate worktrees' from a terminal inside cmux later."
-fi
-
 cat <<'EOS'
 
 Done! Next steps:

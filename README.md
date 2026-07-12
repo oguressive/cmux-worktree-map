@@ -64,7 +64,9 @@ Then:
 1. In cmux, **right-click the sidebar toggle button** (top-left) and pick **worktrees**
 2. Restart your Claude Code sessions (or open `/hooks` once) so the hooks load
 
-The installer merges hook registrations into `~/.claude/settings.json` non-destructively (a timestamped backup is written first) and is idempotent.
+The installer merges hook registrations into `~/.claude/settings.json` non-destructively (a timestamped backup is written first) and is idempotent. It works from any terminal — it only copies files and never talks to cmux.
+
+If the sidebar renders oddly, run `cmux sidebar validate worktrees` from a terminal **inside cmux** to see diagnostics (the control socket only accepts connections from processes running inside cmux).
 
 ## Legend
 
